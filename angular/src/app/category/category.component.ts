@@ -80,7 +80,7 @@ export class CategoryComponent implements OnInit {
   ) { 
     router.events
     .subscribe((event: any) => {
-      if (event instanceof NavigationEnd && window.location.pathname.startsWith("/category/") && this.category_name) {
+      if (event instanceof NavigationEnd && window.location.hash.startsWith("#/category/") && this.category_name) {
         this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe(
           (response: any) => {
             console.log(response);
@@ -89,7 +89,7 @@ export class CategoryComponent implements OnInit {
             }
             console.log(this.itemList);
           },
-          error => {
+          (error: any) => {
             console.log(error);
           },
           () => {
@@ -102,23 +102,22 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.category_name = params.category_name; // same as :username in route
+      // using category_name call the BE api and fetch data
+      this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe(
+        (response: any) => {
+          console.log(response);
+          if (response?.length !== undefined) {
+            this.itemList = [...response];
+          }
+          console.log(this.itemList);
+        },
+        (error: any) => {
+          console.log(error);
+        },
+        () => {
+  
+        });
     });
-    // using category_name call the BE api and fetch data
-    this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe(
-      (response: any) => {
-        console.log(response);
-        if (response?.length !== undefined) {
-          this.itemList = [...response];
-        }
-        console.log(this.itemList);
-      },
-      error => {
-        console.log(error);
-        alert("There was an error while fetching data");
-      },
-      () => {
-
-      });
   }
 
   get categoryName() {

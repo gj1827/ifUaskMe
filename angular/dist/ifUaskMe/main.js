@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Reza\Desktop\Datoteke\RazvojWebAplikacija\ifuaskme\angular\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\Reza\Desktop\Datoteke\RazvojWebAplikacija\ifuaskme FSRE\angular\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -1456,14 +1456,14 @@ class CategoryComponent {
         this.itemList = [];
         router.events
             .subscribe((event) => {
-            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"] && window.location.pathname.startsWith("/category/") && this.category_name) {
+            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"] && window.location.hash.startsWith("#/category/") && this.category_name) {
                 this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe((response) => {
                     console.log(response);
                     if ((response === null || response === void 0 ? void 0 : response.length) !== undefined) {
                         this.itemList = [...response];
                     }
                     console.log(this.itemList);
-                }, error => {
+                }, (error) => {
                     console.log(error);
                 }, () => {
                 });
@@ -1473,18 +1473,17 @@ class CategoryComponent {
     ngOnInit() {
         this.route.params.subscribe((params) => {
             this.category_name = params.category_name; // same as :username in route
-        });
-        // using category_name call the BE api and fetch data
-        this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe((response) => {
-            console.log(response);
-            if ((response === null || response === void 0 ? void 0 : response.length) !== undefined) {
-                this.itemList = [...response];
-            }
-            console.log(this.itemList);
-        }, error => {
-            console.log(error);
-            alert("There was an error while fetching data");
-        }, () => {
+            // using category_name call the BE api and fetch data
+            this.apiService.getTypeRequest('/categories/items/name/' + this.category_name).subscribe((response) => {
+                console.log(response);
+                if ((response === null || response === void 0 ? void 0 : response.length) !== undefined) {
+                    this.itemList = [...response];
+                }
+                console.log(this.itemList);
+            }, (error) => {
+                console.log(error);
+            }, () => {
+            });
         });
     }
     get categoryName() {
