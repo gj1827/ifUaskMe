@@ -593,7 +593,8 @@ class LoginComponent {
                 console.log('user logged in: ', data[0]);
                 localStorage.setItem('currentUser', JSON.stringify(data[0]));
                 //window.location.href = window.location.protocol + '//' + window.location.host + '/';
-                window.location.hash = '#/login';
+                window.location.hash = '#/';
+                window.location.reload();
             }
             else {
                 this.alertService.error('Username or password is incorrect');
@@ -1621,7 +1622,7 @@ function HeaderComponent_div_33_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "a", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HeaderComponent_div_33_Template_a_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4); const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r3.reloadRedirect(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HeaderComponent_div_33_Template_a_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4); const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r3.reloadRedirect("login"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, " Log in ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1643,7 +1644,7 @@ function HeaderComponent_div_34_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HeaderComponent_div_34_Template_a_click_5_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.reloadRedirect(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HeaderComponent_div_34_Template_a_click_5_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.reloadRedirect("login"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Log out ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1681,8 +1682,9 @@ class HeaderComponent {
         this.isUserLoggedIn = localStorage.getItem('currentUser') !== null ? true : false;
         console.log('current user: ', JSON.parse(localStorage.getItem('currentUser')));
     }
-    reloadRedirect() {
-        window.location.href = window.location.protocol + '//' + window.location.host + '/projekti/fsre_rwa/2020/g2/#' + '/login';
+    reloadRedirect(link) {
+        window.location.hash = '#/' + link;
+        window.location.reload();
     }
 }
 HeaderComponent.ɵfac = function HeaderComponent_Factory(t) { return new (t || HeaderComponent)(); };
@@ -1808,7 +1810,7 @@ HeaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
           <a class="button is-link" id="button1" routerLink="/register">
             <strong >Register</strong>
           </a>
-          <a class="button is-light" (click)="reloadRedirect()" routerLink="/login">
+          <a class="button is-light" (click)="reloadRedirect('login')" routerLink="/login">
             Log in
           </a>
         </div>
@@ -1822,7 +1824,7 @@ HeaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
               {{currentUser?.username}}
             </strong>
           </a>
-          <a class="button is-light" (click)="reloadRedirect()" routerLink="/login">
+          <a class="button is-light" (click)="reloadRedirect('login')" routerLink="/login">
             Log out
           </a>
         </div>

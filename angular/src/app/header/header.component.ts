@@ -59,7 +59,7 @@ import { Component, OnInit } from '@angular/core';
           <a class="button is-link" id="button1" routerLink="/register">
             <strong >Register</strong>
           </a>
-          <a class="button is-light" (click)="reloadRedirect()" routerLink="/login">
+          <a class="button is-light" (click)="reloadRedirect('login')" routerLink="/login">
             Log in
           </a>
         </div>
@@ -73,7 +73,7 @@ import { Component, OnInit } from '@angular/core';
               {{currentUser?.username}}
             </strong>
           </a>
-          <a class="button is-light" (click)="reloadRedirect()" routerLink="/login">
+          <a class="button is-light" (click)="reloadRedirect('login')" routerLink="/login">
             Log out
           </a>
         </div>
@@ -142,8 +142,9 @@ export class HeaderComponent implements OnInit {
     console.log('current user: ', JSON.parse(<any>localStorage.getItem('currentUser')));
   }
 
-  reloadRedirect() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/projekti/fsre_rwa/2020/g2/#' + '/login';
+  reloadRedirect(link: string) {
+    window.location.hash = '#/' + link;
+    window.location.reload();
   }
 
 }

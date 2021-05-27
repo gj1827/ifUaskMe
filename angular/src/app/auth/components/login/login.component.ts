@@ -119,7 +119,8 @@ export class LoginComponent implements OnInit {
             console.log('user logged in: ', data[0]);
             localStorage.setItem('currentUser', JSON.stringify(data[0]));
             //window.location.href = window.location.protocol + '//' + window.location.host + '/';
-            window.location.hash = '#/login';
+            window.location.hash = '#/';
+            window.location.reload();
           }
           else {
             this.alertService.error('Username or password is incorrect');
