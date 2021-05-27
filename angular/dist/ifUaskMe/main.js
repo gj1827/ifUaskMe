@@ -592,7 +592,8 @@ class LoginComponent {
             if ((data === null || data === void 0 ? void 0 : data.length) > 0) {
                 console.log('user logged in: ', data[0]);
                 localStorage.setItem('currentUser', JSON.stringify(data[0]));
-                window.location.href = window.location.protocol + '//' + window.location.host + '/';
+                //window.location.href = window.location.protocol + '//' + window.location.host + '/';
+                window.location.hash = '#/login';
             }
             else {
                 this.alertService.error('Username or password is incorrect');
